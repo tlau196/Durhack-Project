@@ -18,7 +18,6 @@ export const firebaseAuth = getAuth(firebaseApp);
 
 firebaseAuth.onAuthStateChanged(user => {
     if (user) {
-        console.log('set user');
         authStore.set(user);
     }
 });

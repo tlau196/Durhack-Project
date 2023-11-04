@@ -8,9 +8,9 @@
 
 <div class="w-screen h-screen flex items-center justify-center">
   <div
-    class="flex flex-col items-center text-center gap-6 border-2 border-gray-200 rounded-md px-8 py-6"
+    class="flex flex-col items-center gap-6 border-2 border-gray-200 rounded-md px-8 py-6"
   >
-    <h1 class="text-4xl font-medium">Sign Up</h1>
+    <h1 class="text-3xl font-medium">Sign Up</h1>
 
     <Button
       onClick={() => console.log("handle sign in with google")}
