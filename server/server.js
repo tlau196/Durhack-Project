@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, getDocs , collection} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import express from 'express';
 import path from 'path';
 //const firestore = require('firebase-admin/firestore');
@@ -44,6 +45,16 @@ expressApp.get("/prod/all/:ID", async (req, res) => {
     } else {
         res.status(404);
     };
+});
+
+expressApp.get("/prod/allprod", async (req, res) => {
+    const prodRef = collection(db, 'Listings');
+    const docsSnap = await getDocs(prodRef);
+    let message = []
+    docsSnap.forEach(doc => {
+       message.push((doc.id, doc.data()));
+    });
+    res.send(message);
 });
 
 expressApp.get("/prod/image/:ID", async (req, res) => {
