@@ -1,5 +1,13 @@
-<script>
+<script lang="ts">
+  import { signInWithGoogle } from "$lib/firebase";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
+  import { goto } from "$app/navigation";
+
+  function handleClickSignIn() {
+    const res = signInWithGoogle().then(() => {
+      goto("/user/dashboard");
+    });
+  }
 </script>
 
 <svelte:head>
@@ -13,7 +21,7 @@
     <h1 class="text-4xl font-medium">Login</h1>
 
     <Button
-      onClick={() => console.log("handle sign in with google")}
+      onClick={handleClickSignIn}
       darkText={true}
       backgroundColour={ButtonBackgroundColour.Gray}
     >
