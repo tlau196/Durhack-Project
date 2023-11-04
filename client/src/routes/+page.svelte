@@ -14,7 +14,7 @@
 <section>
     <HeaderWork />
     <Carousel />
-    <div class="py-12 px-12 space-y-8">
+    <div class="py-12 px-20 space-y-8">
         <div class="py-8 text-black">
             <h2 class="font-bold pl-6 my-4 text-3xl">Latest Music Albums</h2>
             <div class="px-6 m-4 grid grid-cols-4 grid-rows-2 gap-4">
