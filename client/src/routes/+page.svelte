@@ -1,5 +1,6 @@
 <script lang="ts">
     import HeaderWork from "$lib/common/HeaderWork.svelte"
+    import Searchbar from "$lib/common/Searchbar.svelte";
 </script>
 
 
