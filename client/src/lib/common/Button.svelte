@@ -7,7 +7,6 @@
 </script>
 
 <script lang="ts">
-  export let text: string;
   export let onClick: () => void;
   export let darkText = true;
   export let backgroundColour = ButtonBackgroundColour.Red;
@@ -16,8 +15,8 @@
 <button
   class={`px-4 py-2 ${
     darkText ? "text-gray-900" : "text-gray-50"
-  } ${backgroundColour} rounded-md`}
+  } ${backgroundColour} rounded-sm`}
   on:click={onClick}
 >
-  {text}
+  <slot />
 </button>
