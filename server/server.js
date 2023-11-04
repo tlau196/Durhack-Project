@@ -42,17 +42,18 @@ expressApp.get("/prod/all/:ID", async (req, res) => {
     if (docSnap.exists()) {
         res.send(docSnap.data());
     } else {
-        res.status(404).end();
+        res.status(404);
     };
 });
 
-//expressApp.get("/prod/image/:ID", async (req, res) => {
-    //const docRef = doc(db, "Listings", req.params.ID);
-    //const docSnap = await getDoc(docRef);
+expressApp.get("/prod/image/:ID", async (req, res) => {
+    const docRef = doc(db, "Listings", req.params.ID);
+    const docSnap = await getDoc(docRef);
     
-    //if (docSnap.exists()) {
-        
-    //} else {
-    //};
+    if (docSnap.exists()) {
+        res.send("/../images/" + req.params.ID + ".jpg")  
+    } else {
+        res.status(404);
+    };
     
-//}
+})
