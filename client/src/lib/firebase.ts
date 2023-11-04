@@ -34,10 +34,12 @@ export function signInWithGoogle() {
 } 
 
 export interface Listing {
+    id?: string;
     labels: string,
     product_description: string;
     product_name: string;
     seller_ID: string;
+    price: number;
 }
 
 export async function getUsersListings(uid: string) {
@@ -47,6 +49,7 @@ export async function getUsersListings(uid: string) {
         const listings: Listing[] = [];
         snapshot.forEach((doc) => {
             const newListing = doc.data() as Listing;
+            newListing.id = doc.id;
             listings.push(newListing);
         });
 
@@ -78,5 +81,30 @@ export async function createNewListing(name: string, description: string, price:
         });
     } catch(e) {
         console.error("Error creating new listing:", e);
+    }
+}
+
+export interface Purchase {
+    id: string;
+    buyer_ID: string;
+    listing_ID: string;
+}
+
+export async function makePurchase(listingID: string, uid: string) {
+    try {
+        const listing = await getListing(listingID);
+        if (!listing) {
+            throw new Error("Listing not found");
+        }
+        const purchase: Purchase = {
+            id: "",
+            buyer_ID: uid,
+            listing_ID: listingID,
+        };
+        const docRef = await addDoc(collection(db, "Purchases"), purchase);
+        purchase.id = docRef.id;
+        return purchase;
+    } catch(e) {
+        console.error("Error making purchase:", e);
     }
 }
