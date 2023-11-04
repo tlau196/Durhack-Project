@@ -3,7 +3,7 @@
     import Searchbar from "./Searchbar.svelte";
 </script>
 
-<div class="px-4 py-4">
+<div class="bg-primary text-white px-12 py-4">
     <div class="flex items-center justify-between">
         <img src="#" alt="logo">
 
@@ -31,10 +31,10 @@
         </div>
     </div>
     <div class="my-4">
-        <ul class="flex justify-center items-center gap-4">
-            <li class="border-"><a href="/user/login">Home</a></li>
-            <li><a href="">Music</a></li>
-            <li><a href="">New Release</a></li>
+        <ul class="mx-12 flex justify-between items-center gap-4">
+            <li class="border-l-secondary"><a href="/user/login">Home</a></li>
+            <li class="border-l-secondary"><a href="">Music</a></li>
+            <li class="border-l-secondary"><a href="">New Release</a></li>
             <li><a href="">Saved</a></li>
         </ul>
     </div>
