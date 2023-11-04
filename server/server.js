@@ -11,7 +11,8 @@ const firebaseConfig = {
     storageBucket: "durhack-project-45a1b.appspot.com",
     messagingSenderId: "912269921938",
     appId: "1:912269921938:web:017b70dda6b2c8eb06e04b",
-    measurementId: "G-MWCQ2PH5CM"
+    measurementId: "G-MWCQ2PH5CM",
+    storageBucket: '',
 }
 
 const expressApp = express();
@@ -50,7 +51,7 @@ expressApp.get("/prod/allprod", async (req, res) => {
     const docsSnap = await getDocs(prodRef);
     let message = []
     docsSnap.forEach(doc => {
-       message.push((doc.id, doc.data()));
+       message.push({ID: doc.id, ...doc.data()});
     });
     res.send(message);
 });
@@ -72,7 +73,7 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     const querySnapshot = await getDocs(q);
     let message = [];
     querySnapshot.forEach((doc) => {
-        message.push((doc.id, doc.data()));
+        message.push({ID: doc.id, ...doc.data()});
     });
     res.send(message);
 });
