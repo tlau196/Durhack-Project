@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, getDocs , collection} from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getFirestore, doc, getDoc, getDocs , collection, query, where} from "firebase/firestore";
 import express from 'express';
-import path from 'path';
 //const firestore = require('firebase-admin/firestore');
 
 const firebaseConfig = {
@@ -28,9 +26,6 @@ const db = getFirestore(app);
 let hostname = '127.0.0.1'
 let port = 5000
 
-function to_hex(num){
-    return num.toString(16);
-};
 
 expressApp.listen(port, hostname, () => {
     console.log(`server running at http://${hostname}:${port}.`);
@@ -68,3 +63,14 @@ expressApp.get("/prod/image/:ID", async (req, res) => {
     };
     
 })
+
+expressApp.get("/prod/search/:searchTerm", async (req, res) => {
+    const listingRef = collection(db, "Listings");
+    const q = query(listingRef, where("product_name", "==", req.params.searchTerm));
+    const querySnapshot = await getDocs(q);
+    let message = [];
+    querySnapshot.forEach((doc) => {
+        message.push((doc.id, doc.data()));
+    });
+    res.send(message);
+});
