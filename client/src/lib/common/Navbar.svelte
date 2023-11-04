@@ -6,7 +6,8 @@
 
 
 <div class="flex items-center bg-primary text-white p-4 justify-between">
-    <img src="../../../../whale.png" alt="logo">
+
+    <img src="../images/whaleLogo.png" alt="logo">
 
     <Searchbar/>
     

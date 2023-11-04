@@ -1,23 +1,6 @@
 <script>
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
-    import { onMount } from "svelte";
-    // import FilterBox from "$lib/common/HeaderWork.svelte"
-
-    // onMount(async () => {
-    //     try {
-    //         const res = await fetch("http://localhost:5000/prod/allprod")
-    //         if (res.ok) {
-    //             const data = await res.json();
-    //             console.log(data)
-    //         } else {
-    //             throw new Error("Failed to fetch data")
-    //         }
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    //     console.log(data)
-    // })
     const getProducts = async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
