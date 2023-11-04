@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, getDocs , collection, query, where} from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref} from "firebase/storage";
 import express from 'express';
 //const firestore = require('firebase-admin/firestore');
 
@@ -12,7 +12,7 @@ const firebaseConfig = {
     messagingSenderId: "912269921938",
     appId: "1:912269921938:web:017b70dda6b2c8eb06e04b",
     measurementId: "G-MWCQ2PH5CM",
-    storageBucket: '',
+    storageBucket: 'gs://durhack-project-45a1b.appspot.com/',
 }
 
 const expressApp = express();
@@ -22,7 +22,9 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const store = getStorage(app);
+const storage = getStorage(app);
+
+const imagesRef = ref(storage, 'Images');
 
 
 //declaring port and hostname
@@ -61,7 +63,10 @@ expressApp.get("/prod/image/:ID", async (req, res) => {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-        res.send("/../images/" + req.params.ID + ".jpg")  
+        let imageFileName = `${req.params.ID}.jpg`;
+        let imageRef = ref(imagesRef, imageFileName);
+        let imageLink = await getDownloadURL(imageRef);
+        res.send(imageLink);
     } else {
         res.status(404);
     };
