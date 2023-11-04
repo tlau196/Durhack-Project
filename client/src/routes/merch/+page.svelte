@@ -7,7 +7,7 @@
 <HeaderWork />
 <div class="px-12">
     
-    <h2 class="text-5xl font-bold p-12">Music</h2>
+    <h2 class="text-5xl font-bold p-12">Merch</h2>
     <div class="flex items-center justify-center">
 
         <!-- <FilterBox />  -->
@@ -24,3 +24,4 @@
 
 </div>
 <Footer />
+

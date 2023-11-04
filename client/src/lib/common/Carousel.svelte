@@ -47,7 +47,7 @@
     const scaleAnimation = (x) => scale(x, { duration: 500, easing: quintOut });
 </script>
 
-<div class="w-full">
+<div class="px-20 w-full">
     <Carousel {images} transition={scaleAnimation} let:Controls let:Indicators>
         <Controls />
         <Indicators />
