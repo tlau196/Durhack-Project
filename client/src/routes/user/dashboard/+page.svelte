@@ -19,7 +19,7 @@
 
 <Navbar />
 
-<div class="w-screen h-screen grid p-6 gap-6 grid-cols-3">
+<div class="h-screen grid p-6 gap-6 grid-cols-3">
   <div
     class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
   >
