@@ -19,6 +19,7 @@ const path = require('path');
 
 const app = firebase.initializeApp(firebaseConfig);
 
+
 //declaring port and hostname
 
 hostname = '127.0.0.1'
