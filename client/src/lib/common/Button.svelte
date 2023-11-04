@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
   export enum ButtonBackgroundColour {
     Red = "bg-red-500",
-    Blue = "blue",
-    Green = "green",
+    Blue = "bg-blue-500",
+    Green = "bg-green-500",
     Gray = "bg-gray-200",
   }
 </script>
