@@ -38,5 +38,11 @@
       >
       Login with Google
     </Button>
+
+    <p>
+      Don't have an account? <a class="text-blue-500" href="/user/register"
+        >Sign up</a
+      >
+    </p>
   </div>
 </div>

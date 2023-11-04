@@ -38,5 +38,11 @@
       >
       Login with Google
     </Button>
+
+    <p>
+      Already have an account? <a class="text-blue-500" href="/user/login"
+        >Sign in</a
+      >
+    </p>
   </div>
 </div>
