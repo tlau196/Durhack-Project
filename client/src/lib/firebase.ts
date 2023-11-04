@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import { authStore } from "./stores";
 
 const firebaseConfig = {
@@ -64,5 +64,19 @@ export async function getListing(id: string) {
         return listing;
     } catch(e) {
         console.error("Error fetching listing:", e);
+    }
+}
+
+export async function createNewListing(name: string, description: string, price: number, uid: string) {
+    try {
+        await addDoc(collection(db, "Listings"), {
+            product_name: name,
+            product_description: description,
+            seller_ID: uid,
+            labels: "",
+            price: price
+        });
+    } catch(e) {
+        console.error("Error creating new listing:", e);
     }
 }
