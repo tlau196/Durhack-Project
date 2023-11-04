@@ -1,5 +1,10 @@
 <script>
+    let searchTerm = ""
+
+    const search = async () => {
+        
+    }
 
 </script>
 
-<input class="mx-4 flex-1 rounded-full" type="text" placeholder="Search Please Please... ">
+<input class="text-black mx-4 flex-1 rounded-full" bind:value={searchTerm} on:input={search} type="text" placeholder="Search Please Please... ">
