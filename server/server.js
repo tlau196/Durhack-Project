@@ -11,8 +11,8 @@ const firebaseConfig = {
     storageBucket: "durhack-project-45a1b.appspot.com",
     messagingSenderId: "912269921938",
     appId: "1:912269921938:web:017b70dda6b2c8eb06e04b",
-    measurementId: "G-MWCQ2PH5CM"
-    storageBucket: ''
+    measurementId: "G-MWCQ2PH5CM",
+    storageBucket: '',
 }
 
 const expressApp = express();
@@ -77,5 +77,4 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     });
     res.send(message);
 });
-
 
