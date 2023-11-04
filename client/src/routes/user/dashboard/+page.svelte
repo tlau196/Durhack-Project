@@ -1,6 +1,8 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
+  import HeaderWork from "$lib/common/HeaderWork.svelte";
+  import Navbar from "$lib/common/Navbar.svelte";
   import { firebaseAuth } from "$lib/firebase";
   import { authStore } from "$lib/stores";
   import { signOut, type User } from "firebase/auth";
@@ -14,6 +16,8 @@
   <title>Dashboard</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
+
+<Navbar />
 
 <div class="w-screen h-screen grid p-6 gap-6 grid-cols-3">
   <div
