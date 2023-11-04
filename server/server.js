@@ -1,5 +1,8 @@
-const firebase = require('firebase-admin/app');
-const firestore = require('firebase-admin/firestore');
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import express from 'express';
+import path from 'path';
+//const firestore = require('firebase-admin/firestore');
 
 const firebaseConfig = {
     apiKey: "AIzaSyBXOjJy_EpIafw6mntPfHjMq9iKPknx_4g",
@@ -11,26 +14,45 @@ const firebaseConfig = {
     measurementId: "G-MWCQ2PH5CM"
 }
 
-const express = require('express');
 const expressApp = express();
 expressApp.use(express.json());
 
-const path = require('path');
+const app = initializeApp(firebaseConfig);
 
-const app = firebase.initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 
 //declaring port and hostname
 
-hostname = '127.0.0.1'
-port = 5000
+let hostname = '127.0.0.1'
+let port = 5000
+
+function to_hex(num){
+    return num.toString(16);
+};
 
 expressApp.listen(port, hostname, () => {
     console.log(`server running at http://${hostname}:${port}.`);
-    console.log(firestore.getFirestore(app))
 });
 
 
-expressApp.get("/test", (req, res) => {
-    res.send("test");
+expressApp.get("/prod/all/:ID", async (req, res) => {
+    const docRef = doc(db, "Listings", req.params.ID);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        res.send(docSnap.data());
+    } else {
+        res.status(404).end();
+    };
 });
+
+//expressApp.get("/prod/image/:ID", async (req, res) => {
+    //const docRef = doc(db, "Listings", req.params.ID);
+    //const docSnap = await getDoc(docRef);
+    
+    //if (docSnap.exists()) {
+        
+    //} else {
+    //};
+    
+//}
