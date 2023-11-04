@@ -1,5 +1,20 @@
+<script>
+  import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
+</script>
+
 <svelte:head>
-  <title>Sign In</title>
+  <title>Login</title>
 </svelte:head>
 
-<h1>Sign In</h1>
+<div class="w-screen h-screen flex items-center justify-center">
+  <div class="flex border-2 border-gray-200 rounded-md px-8 py-6">
+    <h1 class="text-4xl font-medium">Login</h1>
+
+    <Button
+      text="Login with Google"
+      onClick={() => console.log("handle sign in with google")}
+      darkText={true}
+      backgroundColour={ButtonBackgroundColour.Red}
+    />
+  </div>
+</div>
