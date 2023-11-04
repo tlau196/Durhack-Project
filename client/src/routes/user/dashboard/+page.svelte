@@ -1,15 +1,31 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
-  import HeaderWork from "$lib/common/HeaderWork.svelte";
   import Navbar from "$lib/common/Navbar.svelte";
-  import { firebaseAuth } from "$lib/firebase";
+  import {
+    firebaseAuth,
+    getUsersListings,
+    type Listing as ListingType,
+  } from "$lib/firebase";
   import { authStore } from "$lib/stores";
   import { signOut, type User } from "firebase/auth";
+  import { onMount } from "svelte";
+  import Listing from "./Listing.svelte";
 
   let user: User;
 
   authStore.subscribe((u) => (user = u));
+
+  let listings: ListingType[];
+  let loadingListings = true;
+
+  onMount(() => {
+    const uid = user.uid;
+    getUsersListings(uid).then((l) => {
+      listings = l!;
+      loadingListings = false;
+    });
+  });
 </script>
 
 <svelte:head>
@@ -36,9 +52,19 @@
     >
   </div>
   <div
-    class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"
+    class="bg-neutral-200 p-8 flex gap-3 flex-col transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"
   >
-    <h2 class="text-3xl">Your Products</h2>
+    <h2 class="text-3xl">Your Listings</h2>
+
+    <div class="flex gap-3 flex-col">
+      {#if loadingListings}
+        <p>Loading...</p>
+      {:else}
+        {#each listings as listing}
+          <Listing {listing} />
+        {/each}
+      {/if}
+    </div>
   </div>
   <div
     class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"

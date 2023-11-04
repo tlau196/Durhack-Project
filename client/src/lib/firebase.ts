@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { authStore } from "./stores";
 
 const firebaseConfig = {
@@ -15,6 +16,8 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(firebaseApp);
+export const db = getFirestore(firebaseApp);
+
 
 firebaseAuth.onAuthStateChanged(user => {
     if (user) {
@@ -29,3 +32,34 @@ export function signInWithGoogle() {
         console.error('Sign in with google error:', e);
     });
 } 
+
+export interface Listing {
+    labels: string,
+    product_description: string;
+    product_name: string;
+    seller_ID: string;
+}
+
+export async function getUsersListings(uid: string) {
+    try {
+        const q = query(collection(db, "Listings"), where("seller_ID", "==", uid));
+        const snapshot = await getDocs(q);
+        const listings: Listing[] = [];
+        snapshot.forEach((doc) => {
+            const newListing = doc.data() as Listing;
+            listings.push(newListing);
+        });
+
+        return listings;
+    } catch(e) {
+        console.error("Error fetching user's listings:", e);
+    }
+}
+
+export async function getListing(id: string) {
+    try {
+        // const snap = await collection(db, "Listings").doc(id).get();
+    } catch(e) {
+        console.error("Error fetching listing:", e);
+    }
+}
