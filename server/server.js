@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, getDocs , collection, query, where} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import express from 'express';
 //const firestore = require('firebase-admin/firestore');
 
@@ -19,6 +20,8 @@ expressApp.use(express.json());
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
+const store = getStorage(app);
 
 
 //declaring port and hostname
@@ -61,8 +64,7 @@ expressApp.get("/prod/image/:ID", async (req, res) => {
     } else {
         res.status(404);
     };
-    
-})
+});
 
 expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     const listingRef = collection(db, "Listings");
@@ -74,3 +76,4 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     });
     res.send(message);
 });
+
