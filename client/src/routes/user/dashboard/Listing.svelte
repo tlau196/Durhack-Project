@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Navbar from "$lib/common/Navbar.svelte";
   import type { Listing } from "$lib/firebase";
 
   export let listing: Listing;

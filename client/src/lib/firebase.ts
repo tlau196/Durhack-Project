@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { authStore } from "./stores";
 
 const firebaseConfig = {
@@ -58,7 +58,10 @@ export async function getUsersListings(uid: string) {
 
 export async function getListing(id: string) {
     try {
-        // const snap = await collection(db, "Listings").doc(id).get();
+        const docRef = doc(db, "Listings", id);
+        const docSnap = await getDoc(docRef);
+        const listing = docSnap.data() as Listing;
+        return listing;
     } catch(e) {
         console.error("Error fetching listing:", e);
     }
