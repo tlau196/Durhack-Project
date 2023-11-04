@@ -3,12 +3,12 @@
     import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte"
 </script>
 
-<div class="flex items-center justify-evenly">
+<div class="flex items-center justify-between">
     <img src="#" alt="logo">
 
     <!-- <Searchbar /> -->
 
-    <div class="flex items-center justify-evenly">
+    <div class="flex items-center justify-between">
         <!-- wishlist -->
        <Button
             onClick={() => console.log("Wishlist button")}
