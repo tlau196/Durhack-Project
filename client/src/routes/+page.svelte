@@ -12,7 +12,8 @@
 </svelte:head>
 
 <section>
-    <HeaderWork /> 
+    <HeaderWork />
+    <Carousel />
     <div class="py-12 px-12 space-y-8">
         <div class="py-8 text-black">
             <h2 class="font-bold pl-6 my-4 text-3xl">Latest Music Albums</h2>
