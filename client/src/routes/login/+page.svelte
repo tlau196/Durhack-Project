@@ -13,7 +13,7 @@
     <Button
       text="Login with Google"
       onClick={() => console.log("handle sign in with google")}
-      darkText={true}
+      darkText={false}
       backgroundColour={ButtonBackgroundColour.Red}
     />
   </div>

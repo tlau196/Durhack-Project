@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
   export enum ButtonBackgroundColour {
-    Red = "red",
+    Red = "bg-red-500",
     Blue = "blue",
     Green = "green",
   }
@@ -16,7 +16,7 @@
 <button
   class={`px-4 py-2 ${
     darkText ? "text-gray-900" : "text-gray-50"
-  } bg-${backgroundColour}-600`}
+  } ${backgroundColour} rounded-md`}
   on:click={onClick}
 >
   {text}
