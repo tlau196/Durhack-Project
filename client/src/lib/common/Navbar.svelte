@@ -1,13 +1,13 @@
 <script>
     import Searchbar from "./Searchbar.svelte";
-
+    import logo from "$lib/images/whaleLogo.png"
     
 </script>
 
 
 <div class="flex items-center bg-primary text-white p-4 justify-between">
 
-    <img src="../images/whaleLogo.png" alt="logo">
+    <img class="w-20 h-20" src="{logo}" alt="logo">
 
     <Searchbar/>
     

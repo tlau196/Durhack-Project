@@ -9,23 +9,12 @@
     }
     const search = async () => {
         const response = await fetch(`http://localhost:5000/prod/search/${searchTerm}`)
+        console.log(response)
         const result = await response.json()
+        console.log(result[0].ID)
 
-        if (result) {
-            switch (result.labels) {
-                case "album":
-                    redirect(307, '/music')
-                    break;
-                case "poster":
-                    redirect(307, '/poster')
-                    break;
-                case "merch":
-                    redirect(307, '/merch')
-                    break;
-            } 
-        } else {
-            //Small message will pop up 
-        }
+        //listings/ID
+        throw redirect(302, `/music`)
     }
 
 </script>
