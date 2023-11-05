@@ -2,6 +2,7 @@
   import Carousel from "$lib/common/Carousel.svelte";
   import Footer from "$lib/common/Footer.svelte";
   import HeaderWork from "$lib/common/HeaderWork.svelte";
+  import { onMount } from "svelte";
 
   const root = "https//127.0.0.1:5000/";
 </script>
