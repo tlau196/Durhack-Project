@@ -82,4 +82,3 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     });
     res.send(message);
 });
-

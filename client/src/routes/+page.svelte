@@ -2,6 +2,17 @@
     import Carousel from "$lib/common/Carousel.svelte";
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
+
+    const root = 'https//127.0.0.1:5000/';
+
+    let getImage = getImages(listingID);
+
+    async function getImages(listingID){
+        const imageResponse = await fetch(`${root}prod/image/${listingID}`);
+        const URLData = await imageResponse.text();
+        return URLData;
+    }
+
 </script>
 
 
@@ -18,7 +29,7 @@
         <div class="bg-white rounded-lg py-8 text-black">
             <h2 class="font-bold pl-6 my-4 text-3xl">Latest Music Albums</h2>
             <div class="px-6 m-4 grid grid-cols-4 grid-rows-2 gap-4">
-                <p>Hello</p>
+                <img src="" />
                 <p>Hello</p>
                 <p>Hello</p>
                 <p>Hello</p>
