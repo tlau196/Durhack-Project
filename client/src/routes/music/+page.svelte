@@ -54,7 +54,7 @@
                         <li>
                             <a href={`/listings/${item.product.ID}`}>
                                 <div>
-                                    <p class="py-2 text-2xl font-semibold">{item.product.product_name}</p>
+                                    <p class="text-2xl font-semibold">{item.product.product_name}</p>
                                     <img src="{item.image}" alt="yes">
                                     <p>{item.product.product_description}</p>
                                 </div>

@@ -3,11 +3,22 @@
   import Navbar from "$lib/common/Navbar.svelte";
   import type { Listing } from "$lib/firebase.js";
   import { basketStore } from "$lib/stores.js";
+  import { onMount } from "svelte";
 
   export let data;
+    // let images: string[] = [];
+    //
+    // onMount( async () => {
+    //     const imagePromises = data.map(async (element) => {
+    //         const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
+    //         const dataImages = await resImages.text();
+    //         return dataImages;
+    //     });
+    // })
 
   function handleClickAddToBasket() {
     basketStore.update((basket) => {
+      console.log(data)
       return [...basket, data as Listing];
     });
   }
