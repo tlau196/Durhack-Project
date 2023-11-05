@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
 
   let basketContents: Listing[];
-  let user: User;
+  let user: User | null;
 
   basketStore.subscribe((basket) => {
     basketContents = basket;
@@ -51,7 +51,7 @@
         onApprove: function (data: any, actions: any) {
           return actions.order.capture().then(function (details: any) {
             for (const item of basketContents) {
-              createOrder(item.id!, user.uid);
+              createOrder(item.id!, user!.uid);
               increaseBalance(item.seller_ID, item.price);
             }
 

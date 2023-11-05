@@ -1,7 +1,14 @@
 <script lang="ts">
-  import { signInWithGoogle } from "$lib/firebase";
+  import { firebaseAuth, signInWithGoogle } from "$lib/firebase";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
   import { goto } from "$app/navigation";
+  import Navbar from "$lib/common/Navbar.svelte";
+  import Footer from "$lib/common/Footer.svelte";
+  import HeaderWork from "$lib/common/HeaderWork.svelte";
+  import { signInWithEmailAndPassword } from "firebase/auth";
+
+  let email: string;
+  let password: string;
 
   function handleClickSignIn() {
     const res = signInWithGoogle().then(() => {
@@ -14,11 +21,32 @@
   <title>Login</title>
 </svelte:head>
 
-<div class="w-screen h-screen flex items-center justify-center">
+<HeaderWork />
+
+<div class="h-screen flex items-center justify-center">
   <div
     class="flex flex-col items-center gap-6 border-2 border-gray-200 rounded-md px-8 py-6"
   >
     <h1 class="text-3xl font-medium">Login</h1>
+
+    <input bind:value={email} type="email" placeholder="Email" class="" />
+    <input
+      bind:value={password}
+      type="password"
+      placeholder="Password"
+      class=""
+    />
+
+    <Button
+      onClick={() => {
+        signInWithEmailAndPassword(firebaseAuth, email, password);
+        goto("/user/dashboard");
+      }}
+      darkText={true}
+      backgroundColour={ButtonBackgroundColour.Gray}
+    >
+      Login with Email
+    </Button>
 
     <Button
       onClick={handleClickSignIn}
@@ -54,3 +82,5 @@
     </p>
   </div>
 </div>
+
+<Footer />
