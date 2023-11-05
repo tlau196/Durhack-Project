@@ -20,4 +20,4 @@
     }
 
 </script>
-<input class="text-black mx-4 flex-1 rounded-full" bind:value={searchTerm} on:keydown={keyPressed} type="text" placeholder="Search Please Please... ">
+<input class="text-black mx-4 flex-1 rounded-full" bind:value={searchTerm} on:keydown={keyPressed} type="text" placeholder="Search...">
