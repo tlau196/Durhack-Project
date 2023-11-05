@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
     // import FilterBox from "$lib/common/HeaderWork.svelte"
     import { onMount } from "svelte";
 
     let products = null;
-    let images = [];
+    let images: string[] = [];
     let productsAndImages = []
 
     onMount( async () => {
@@ -21,7 +21,7 @@
 
         images = await Promise.all(imagePromises);
 
-        productsAndImages = products.map((product, index) => ({ product, image: images[index] }));
+        productsAndImages = products.map((product: object, index: number) => ({ product, image: images[index] }));
 
         
     })

@@ -14,13 +14,13 @@
 
     // let image = [];
     let products = null;
-    let images = [];
+    let images: string[] = [];
     let productsAndImages = []
 
     onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        products = data.filter((element) => element.labels[0] == "album")
+        products = data.filter((element: Listing) => element.labels[0] == "album")
  
         const imagePromises = products.map(async (element) => {
             const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
@@ -30,7 +30,7 @@
 
         images = await Promise.all(imagePromises);
 
-        productsAndImages = products.map((product, index) => ({ product, image: images[index] }));
+        productsAndImages = products.map((product: object, index: number) => ({ product, image: images[index] }));
 
         
     })
