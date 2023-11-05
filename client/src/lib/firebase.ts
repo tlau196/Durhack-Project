@@ -134,3 +134,43 @@ export async function getUsersOrders(uid: string) {
         console.error("Error fetching user's orders:", e);
     }
 }
+
+export interface Account {
+    balance: number;
+}
+
+export async function getAccountData(uid: string) {
+    try {
+        const docRef = doc(db, "Accounts", uid);
+        const docSnap = await getDoc(docRef);
+        const account = docSnap.data() as Account;
+        return account;
+    } catch(e) {
+        console.error("Error fetching account data:", e);
+    }
+}
+
+export async function createAccountData(uid: string) {
+    try {
+        const account = {
+            balance: 0,
+        };
+
+        await setDoc(doc(db, "Accounts", uid), account);
+    } catch(e) {
+        console.error("Error creating account:", e);
+    }
+}
+
+export async function increaseBalance(uid: string, increase: number) {
+    try {
+        const account = await getAccountData(uid);
+        if (account) {
+            account.balance += increase;
+            await setDoc(doc(db, "Accounts", uid), account);
+        }
+
+    } catch(e) {
+        console.error("Error updating balance:", e);
+    }
+}

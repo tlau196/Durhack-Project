@@ -6,8 +6,11 @@
     firebaseAuth,
     getUsersListings,
     getUsersOrders,
+    type Account,
     type Listing as ListingType,
     type Order as OrderType,
+    getAccountData,
+    createAccountData,
   } from "$lib/firebase";
   import { authStore } from "$lib/stores";
   import { signOut, type User } from "firebase/auth";
@@ -26,7 +29,10 @@
   let orders: OrderType[];
   let loadingOrders = true;
 
-  onMount(() => {
+  let account: Account;
+  let loadingAccount = true;
+
+  onMount(async () => {
     const uid = user.uid;
     getUsersListings(uid).then((l) => {
       listings = l!;
@@ -37,6 +43,20 @@
       orders = o!;
       loadingOrders = false;
     });
+
+    try {
+      const res = await getAccountData(uid);
+      if (res) {
+        account = res;
+      } else {
+        await createAccountData(uid);
+      }
+
+      loadingAccount = false;
+    } catch (error) {
+      await createAccountData(uid);
+      account = { balance: 0 };
+    }
   });
 </script>
 
@@ -62,6 +82,12 @@
       backgroundColour={ButtonBackgroundColour.Red}
       darkText={false}>Sign Out</Button
     >
+    {#if loadingAccount}
+      <p>Loading...</p>
+    {:else}
+      <h3 class="text-2xl">Account Balance</h3>
+      <h1 class="text-6xl font-bold">£{account.balance}</h1>
+    {/if}
   </div>
   <div
     class="bg-neutral-200 p-8 flex gap-3 flex-col transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"

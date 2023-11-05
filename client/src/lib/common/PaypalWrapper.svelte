@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { createOrder, type Listing } from "$lib/firebase";
+  import { createOrder, type Listing, increaseBalance } from "$lib/firebase";
   import { authStore, basketStore } from "$lib/stores";
   import { loadScript } from "@paypal/paypal-js";
   import type { User } from "firebase/auth";
@@ -52,6 +52,7 @@
           return actions.order.capture().then(function (details: any) {
             for (const item of basketContents) {
               createOrder(item.id!, user.uid);
+              increaseBalance(item.seller_ID, item.price);
             }
 
             // clear basket
