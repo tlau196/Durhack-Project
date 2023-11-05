@@ -1,18 +1,58 @@
-<script>
+<script lang="ts">
   import { goto } from "$app/navigation";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
-  import { firebaseAuth, signInWithGoogle } from "$lib/firebase";
+  import Footer from "$lib/common/Footer.svelte";
+  import HeaderWork from "$lib/common/HeaderWork.svelte";
+  import {
+    createAccountData,
+    firebaseAuth,
+    signInWithGoogle,
+  } from "$lib/firebase";
+  import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+  let email: string;
+  let name: string;
+  let password: string;
 </script>
 
 <svelte:head>
   <title>Sign Up</title>
 </svelte:head>
 
-<div class="w-screen h-screen flex items-center justify-center">
+<HeaderWork />
+
+<div class="h-screen flex items-center justify-center">
   <div
     class="flex flex-col items-center gap-6 border-2 border-gray-200 rounded-md px-8 py-6"
   >
     <h1 class="text-3xl font-medium">Sign Up</h1>
+
+    <input bind:value={email} type="email" placeholder="Email" class="" />
+    <input bind:value={name} type="text" placeholder="Name" class="" />
+    <input
+      bind:value={password}
+      type="password"
+      placeholder="Password"
+      class=""
+    />
+
+    <Button
+      onClick={async () => {
+        const user = await createUserWithEmailAndPassword(
+          firebaseAuth,
+          email,
+          password
+        );
+        if (firebaseAuth.currentUser) {
+          await updateProfile(firebaseAuth.currentUser, { displayName: name });
+        }
+        goto("/user/login");
+      }}
+      darkText={true}
+      backgroundColour={ButtonBackgroundColour.Gray}
+    >
+      Login with Email
+    </Button>
 
     <Button
       onClick={() => {
@@ -51,3 +91,5 @@
     </p>
   </div>
 </div>
+
+<Footer />

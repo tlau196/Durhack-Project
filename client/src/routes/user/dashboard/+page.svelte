@@ -19,7 +19,7 @@
   import Order from "./Order.svelte";
   import stonk from "$lib/images/stonks.jpg";
 
-  let user: User;
+  let user: User | null;
 
   authStore.subscribe((u) => (user = u));
 
@@ -33,7 +33,7 @@
   let loadingAccount = true;
 
   onMount(async () => {
-    const uid = user.uid;
+    const uid = user!.uid;
     getUsersListings(uid).then((l) => {
       listings = l!;
       loadingListings = false;
@@ -77,6 +77,7 @@
     <Button
       onClick={() => {
         signOut(firebaseAuth);
+        authStore.set(null);
         goto("/");
       }}
       backgroundColour={ButtonBackgroundColour.Red}
