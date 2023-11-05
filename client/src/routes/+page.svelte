@@ -16,7 +16,7 @@
   // let image = [];
   let products = null;
   let images: string[] = [];
-  let productsAndImages: object[] = [];
+  let productsAndImages: any = [];
 
   onMount(async () => {
     const res = await fetch("http://127.0.0.1:5000/prod/allprod");
