@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import { authStore } from "./stores";
 
 const firebaseConfig = {
@@ -87,6 +87,14 @@ export async function createNewListing(name: string, description: string, price:
         await uploadBytes(imageRef, image);
     } catch(e) {
         console.error("Error creating new listing:", e);
+    }
+}
+
+export async function deleteListing(id: string) {
+    try {
+        await deleteDoc(doc(db, "Listings", id));
+    } catch(e) {
+        console.error("Error deleting listing:", e);
     }
 }
 

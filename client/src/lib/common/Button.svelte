@@ -16,7 +16,7 @@
 <button
   class={`px-4 py-2 w-full flex items-center justify-center ${
     darkText ? "text-gray-900" : "text-gray-50"
-  } ${backgroundColour} rounded-sm flex flex-row gap-3`}
+  } ${backgroundColour} rounded-md flex flex-row gap-3`}
   on:click={onClick}
 >
   <slot />
