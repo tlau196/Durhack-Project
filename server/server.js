@@ -28,6 +28,8 @@ const storage = getStorage(app);
 
 const imagesRef = ref(storage, 'Images');
 
+const bannerRef = ref(storage, 'Banner');
+
 
 //declaring port and hostname
 
@@ -74,6 +76,14 @@ expressApp.get("/prod/image/:ID", async (req, res) => {
     };
 });
 
+expressApp.get("/prod/banner/:ID", async (req, res) => {
+    let imageFileName = `${req.params.ID}.jpg`;
+    let imageRef = ref(bannerRef, imageFileName);
+    let imageLink = await getDownloadURL(imageRef);
+    res.send(imageLink);
+});
+
+
 expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     const listingRef = collection(db, "Listings");
     const q = query(listingRef, where("product_name", "==", req.params.searchTerm));
@@ -108,3 +118,4 @@ expressApp.get("/prod/filters/:filterTerms", async (req, res) => {
     });
     res.send(message);
 });
+
