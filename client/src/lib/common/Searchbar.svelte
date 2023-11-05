@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { redirect } from '@sveltejs/kit';
+
+    import { goto } from '$app/navigation';
     let searchTerm = ""
 
     const keyPressed = (e: KeyboardEvent) => {
@@ -7,6 +8,7 @@
             search()
         }
     }
+
     const search = async () => {
         const response = await fetch(`http://localhost:5000/prod/search/${searchTerm}`)
         console.log(response)
@@ -14,7 +16,7 @@
         console.log(result[0].ID)
 
         //listings/ID
-        throw redirect(302, `/music`)
+        goto(`listings/${result[0].ID}`)
     }
 
 </script>
