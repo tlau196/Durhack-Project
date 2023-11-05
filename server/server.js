@@ -108,4 +108,3 @@ expressApp.get("/prod/filters/:filterTerms", async (req, res) => {
     });
     res.send(message);
 });
-});
