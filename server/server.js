@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, getDocs , collection, query, where} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref} from "firebase/storage";
 import express from 'express';
+import * as cors from "cors";
 //const firestore = require('firebase-admin/firestore');
 
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 
 const expressApp = express();
 expressApp.use(express.json());
+expressApp.use(cors.default());
 
 const app = initializeApp(firebaseConfig);
 

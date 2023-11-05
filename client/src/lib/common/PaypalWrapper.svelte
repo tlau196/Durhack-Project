@@ -1,6 +1,20 @@
 <script lang="ts">
+  import type { Listing } from "$lib/firebase";
+  import { basketStore } from "$lib/stores";
   import { loadScript } from "@paypal/paypal-js";
   import { onMount } from "svelte";
+
+  let basketContents: Listing[];
+
+  basketStore.subscribe((basket) => {
+    basketContents = basket;
+  });
+
+  $: subtotal = basketContents.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+  $: tax = subtotal * 0.2;
+  $: total = subtotal + tax;
 
   onMount(async () => {
     try {
@@ -12,13 +26,17 @@
 
       paypal!.Buttons!({
         createOrder: function (data: any, actions: any) {
-          console.log(data);
+          if (total === 0) {
+            alert("You cannot checkout with an empty basket!");
+            return;
+          }
+
           return actions.order.create({
             purchase_units: [
               {
                 amount: {
                   currency_code: "GBP",
-                  value: "0.69",
+                  value: total.toFixed(2),
                 },
               },
             ],
