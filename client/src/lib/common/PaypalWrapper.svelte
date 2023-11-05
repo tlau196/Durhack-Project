@@ -1,13 +1,19 @@
 <script lang="ts">
-  import type { Listing } from "$lib/firebase";
-  import { basketStore } from "$lib/stores";
+  import { goto } from "$app/navigation";
+  import { createOrder, type Listing } from "$lib/firebase";
+  import { authStore, basketStore } from "$lib/stores";
   import { loadScript } from "@paypal/paypal-js";
+  import type { User } from "firebase/auth";
   import { onMount } from "svelte";
 
   let basketContents: Listing[];
+  let user: User;
 
   basketStore.subscribe((basket) => {
     basketContents = basket;
+  });
+  authStore.subscribe((u) => {
+    user = u;
   });
 
   $: subtotal = basketContents.reduce((acc, item) => {
@@ -44,7 +50,13 @@
         },
         onApprove: function (data: any, actions: any) {
           return actions.order.capture().then(function (details: any) {
-            alert("Transaction completed by " + details.payer.name.given_name);
+            for (const item of basketContents) {
+              createOrder(item.id!, user.uid);
+            }
+
+            // clear basket
+            basketStore.set([]);
+            goto("/user/dashboard");
           });
         },
       }).render("#paypal-button-container");

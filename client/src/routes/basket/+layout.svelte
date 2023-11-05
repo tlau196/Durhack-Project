@@ -1,7 +1,10 @@
 <script>
+  import AuthenticatedRoute from "$lib/common/AuthenticatedRoute.svelte";
   import PaypalWrapper from "$lib/common/PaypalWrapper.svelte";
 </script>
 
-<PaypalWrapper>
-  <slot />
-</PaypalWrapper>
+<AuthenticatedRoute>
+  <PaypalWrapper>
+    <slot />
+  </PaypalWrapper>
+</AuthenticatedRoute>

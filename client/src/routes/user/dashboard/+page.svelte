@@ -35,9 +35,9 @@
 
 <Navbar />
 
-<div class="h-screen grid p-6 gap-6 grid-cols-3">
+<div class="grid p-6 gap-6 md:grid-cols-3 grid-cols-1">
   <div
-    class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
+    class="bg-neutral-200 flex flex-col gap-4 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
   >
     <h2 class="text-2xl">
       Hello, <span class="font-semibold">{user?.displayName}</span>.
@@ -65,6 +65,12 @@
         {/each}
       {/if}
     </div>
+
+    <Button
+      backgroundColour={ButtonBackgroundColour.Blue}
+      darkText={false}
+      onClick={() => goto("/listings/new")}>Post a listing</Button
+    >
   </div>
   <div
     class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"
@@ -72,7 +78,7 @@
     <h2 class="text-3xl">Stonks</h2>
   </div>
   <div
-    class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
+    class="bg-neutral-200 flex flex-col gap-5 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
   >
     <h2 class="text-3xl">Purchase History</h2>
   </div>

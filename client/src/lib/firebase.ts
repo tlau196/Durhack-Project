@@ -35,7 +35,7 @@ export function signInWithGoogle() {
 
 export interface Listing {
     id?: string;
-    labels: string,
+    labels: string[],
     product_description: string;
     product_name: string;
     seller_ID: string;
@@ -84,26 +84,28 @@ export async function createNewListing(name: string, description: string, price:
     }
 }
 
-export interface Purchase {
-    id: string;
-    buyer_ID: string;
+export interface Order {
+    created_at: string;
+    fulfilled: boolean;
     listing_ID: string;
+    user_ID: string;
 }
 
-export async function makePurchase(listingID: string, uid: string) {
+export async function createOrder(listingID: string, uid: string) {
     try {
         const listing = await getListing(listingID);
         if (!listing) {
             throw new Error("Listing not found");
         }
-        const purchase: Purchase = {
-            id: "",
-            buyer_ID: uid,
+
+        const order: Order = {
+            created_at: new Date().toISOString(),
+            fulfilled: false,
             listing_ID: listingID,
+            user_ID: uid
         };
-        const docRef = await addDoc(collection(db, "Purchases"), purchase);
-        purchase.id = docRef.id;
-        return purchase;
+
+        await addDoc(collection(db, "Orders"), order);
     } catch(e) {
         console.error("Error making purchase:", e);
     }
