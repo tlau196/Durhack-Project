@@ -50,11 +50,15 @@
             <div class="px-12 grid grid-cols-3 gap-96">
                 
                 {#each productsAndImages as item}
-                    <div>
-                        <p>{item.product.product_name}</p>
-                        <img src="{item.image}" alt="yes">
-                        <p>{item.product.product_description}</p>
-                    </div>
+                    <li>
+                        <a href={`/listings/${item.product.ID}`}>
+                            <div>
+                                <p>{item.product.product_name}</p>
+                                <img src="{item.image}" alt="yes">
+                                <p>{item.product.product_description}</p>
+                            </div>
+                        </a>
+                    </li>
                 {/each}
             </div>
         </div>

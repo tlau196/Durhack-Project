@@ -5,10 +5,10 @@
 </script>
 
 
-<div class="flex items-center bg-primary text-white p-4 justify-between">
+<div class="flex items-center bg-primary text-white pt-4 px-4 justify-between">
 
     <li><a href="/">
-        <img class="w-20 h-20" src="{logo}" alt="logo">
+        <img class="w-16 h-16" src="{logo}" alt="logo">
     </a></li>
 
     <Searchbar/>
