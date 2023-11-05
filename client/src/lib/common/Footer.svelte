@@ -3,53 +3,9 @@
 </script>
 
 <div class="flex justify-center items-center">
-    <div class="pt-8 flex-1 text-center text-white bg-primary grid grid-cols-4 grid-rows-2">
-        <div>
-            <h3 class="text-lg font-bold">Shop</h3>
-            <ul>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-            </ul>
-        </div>
+    <div class="pt-8 flex-1 text-center font-semibold text-white bg-primary">
 
-        <div>
-            <h3 class="text-lg font-bold">Sell</h3>
-            <ul>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-            </ul>
-        </div>
-
-
-        <div>
-            <h3 class="text-lg font-bold">About</h3>
-            <ul>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="text-lg font-bold">Help</h3>
-            <ul>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-                <li><a href="#">Hello</a></li>
-            </ul>
-        </div>
-
-        <div class="col-span-4 flex items-center justify-center flex-row gap-8">
+        <div class="col-span-4 px-12 flex items-center justify-between flex-row gap-36">
             <div>
                 <ul class="my-4 flex items-center justify-between gap-4">
                     <li><a href="">United Kingdom</a></li>

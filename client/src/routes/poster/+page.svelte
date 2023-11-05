@@ -38,14 +38,20 @@
         <h2 class="text-5xl font-bold p-12">Poster</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
-            <div class="px-12 grid grid-cols-3 gap-96">
+            <div class="px-12 grid grid-cols-3 gap-96 py-4">
                 
                 {#each productsAndImages as item}
-                    <div>
-                        <p>{item.product.product_name}</p>
-                        <img src="{item.image}" alt="yes">
-                        <p>{item.product.product_description}</p>
-                    </div>
+                    <ul>
+                        <li>
+                            <a href={`/listings/${item.product.ID}`}>
+                                <div>
+                                    <p class="py-2 text-2xl font-semibold">{item.product.product_name}</p>
+                                    <img src="{item.image}" alt="yes">
+                                    <p>{item.product.product_description}</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 {/each}
             </div>
         </div>
