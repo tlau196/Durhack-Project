@@ -1,5 +1,7 @@
 <script>
+  import { goto } from "$app/navigation";
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
+  import { firebaseAuth, signInWithGoogle } from "$lib/firebase";
 </script>
 
 <svelte:head>
@@ -13,7 +15,10 @@
     <h1 class="text-3xl font-medium">Sign Up</h1>
 
     <Button
-      onClick={() => console.log("handle sign in with google")}
+      onClick={() => {
+        signInWithGoogle();
+        goto("/user/dashboard");
+      }}
       darkText={true}
       backgroundColour={ButtonBackgroundColour.Gray}
     >
