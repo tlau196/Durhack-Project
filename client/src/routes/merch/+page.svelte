@@ -34,6 +34,8 @@
                     </div>
                 {/if}
             {/each}
+        {:catch err}
+            <p>Something went wrong {err}</p>
         {/await}
         </div>
     </div>

@@ -1,12 +1,27 @@
 <script>
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
+    
+    let image = [];
+
     const getProducts = async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        console.log(data)
-        return data
+        const filteredData = data.filter((word) => word.labels == "album")
+
+        getImagesForProducts(filteredData)
+
+        return filteredData
     }
+
+    const getImagesForProducts = async (filteredData) => {
+        filteredData.forEach(async (element) => {
+            let res = await fetch(`http://localhost:5000/prod/image/${element.ID}`)
+            let data = await res.json()
+            image.push(data)
+        }) 
+    }
+    
 
     getProducts()
 </script>
@@ -21,15 +36,24 @@
             <p>Loading...</p>
         {:then data}
             <div class="grid grid-cols-3 gap-96">
-                {#each data as datas}
-                    {#if datas.labels == "album"}
-                        <div>
-                            <p>{datas.product_name}</p>
-                            <p>{datas.product_description}</p>
-                        </div>
-                    {/if}
-                {/each}
+                <div>
+                    {#each data as datas}
+                        <p>{datas.product_name}</p>
+                    {/each}
+                    <!-- {#each image as images} -->
+                    <!--     <div> -->
+                    <!--         <p>{datas.product_name}</p> -->
+                    <!--         <p>{datas.product_description}</p> -->
+                    <!--     </div> -->
+                    <!-- {/each} -->
+                    {#each data as datas}
+                        <p>{datas.product_description}</p>
+                    {/each}
+
+                </div>
             </div>
+        {:catch err}
+            <p>Something went wrong {err}</p>
         {/await}
     </div>
 

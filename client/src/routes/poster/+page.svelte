@@ -6,8 +6,14 @@
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
         console.log(data)
+        const data = data.filter((word) => word.labels == "album")
+        console.log(data)
         return data
     }
+
+    // const getImagesForProducts = async (data) => {
+    //     const res = await fetch(`http://localhost:5000/prod/image/${data.}`) 
+    // }
 
     getProducts()
 
@@ -34,6 +40,8 @@
                     {/if}
                 {/each}
             </div>
+        {:catch err}
+            <p>Something went wrong {err}</p>
         {/await}
     </div>
 

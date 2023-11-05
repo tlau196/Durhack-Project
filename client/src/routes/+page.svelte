@@ -14,8 +14,8 @@
 <section>
     <HeaderWork />
     <Carousel />
-    <div class="py-12 px-20 space-y-8">
-        <div class="py-8 text-black">
+    <div class="bg-secondary py-12 px-20 mb-12 space-y-8">
+        <div class="bg-white rounded-lg py-8 text-black">
             <h2 class="font-bold pl-6 my-4 text-3xl">Latest Music Albums</h2>
             <div class="px-6 m-4 grid grid-cols-4 grid-rows-2 gap-4">
                 <p>Hello</p>
@@ -28,7 +28,7 @@
                 <p>Hello</p>
             </div>
         </div>
-        <div class="py-8 text-black">
+        <div class="bg-white rounded-lg py-8 text-black">
             <h2 class="my-4 pl-6 font-bold text-3xl">Secret Deals</h2>
             <div class="px-6 m-4 flex items-center justify-between gap-36">
                 <p>Hello</p>
