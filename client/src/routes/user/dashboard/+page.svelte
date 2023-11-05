@@ -5,12 +5,15 @@
   import {
     firebaseAuth,
     getUsersListings,
+    getUsersOrders,
     type Listing as ListingType,
+    type Order as OrderType,
   } from "$lib/firebase";
   import { authStore } from "$lib/stores";
   import { signOut, type User } from "firebase/auth";
   import { onMount } from "svelte";
   import Listing from "./Listing.svelte";
+  import Order from "./Order.svelte";
 
   let user: User;
 
@@ -19,11 +22,19 @@
   let listings: ListingType[];
   let loadingListings = true;
 
+  let orders: OrderType[];
+  let loadingOrders = true;
+
   onMount(() => {
     const uid = user.uid;
     getUsersListings(uid).then((l) => {
       listings = l!;
       loadingListings = false;
+    });
+
+    getUsersOrders(uid).then((o) => {
+      orders = o!;
+      loadingOrders = false;
     });
   });
 </script>
@@ -81,5 +92,15 @@
     class="bg-neutral-200 flex flex-col gap-5 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"
   >
     <h2 class="text-3xl">Purchase History</h2>
+
+    <div class="flex gap-3 flex-col">
+      {#if loadingOrders}
+        <p>Loading...</p>
+      {:else}
+        {#each orders as order}
+          <Order {order} />
+        {/each}
+      {/if}
+    </div>
   </div>
 </div>
