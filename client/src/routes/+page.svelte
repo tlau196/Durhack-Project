@@ -49,7 +49,7 @@
 
 <section>
   <HeaderWork />
-  <Carousel />
+  <h1 class="font-bold text-5xl p-12 text-center">DeepSea Deals</h1>
   <div class="bg-secondary py-12 px-20 mb-12 space-y-8">
     <div class="bg-white rounded-lg py-8 text-black">
       {#if productsAndImages}
@@ -77,20 +77,6 @@
       {:else}
         <p>Loading...</p>
       {/if}
-    </div>
-    <div class="bg-white rounded-lg py-8 text-black">
-      <h2 class="my-4 pl-6 font-bold text-3xl">Secret Deals</h2>
-      <div class="px-6 m-4 flex items-center justify-between gap-36">
-        <p>Hello</p>
-        <div class="flex-1 grid grid-cols-3 grid-rows-2 gap-8">
-          <p>Hello</p>
-          <p>Hello</p>
-          <p>Hello</p>
-          <p>Hello</p>
-          <p>Hello</p>
-          <p>Hello</p>
-        </div>
-      </div>
     </div>
   </div>
   <Footer />
