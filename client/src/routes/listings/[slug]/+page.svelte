@@ -18,6 +18,11 @@
 {#if data}
   <div class="p-8 grid grid-cols-3">
     <div class="flex flex-col col-span-1">
+      <Button
+        onClick={() => history.back()}
+        darkText={true}
+        backgroundColour={ButtonBackgroundColour.Gray}>Back</Button
+      >
       <h1 class="text-5xl font-semibold">{data.product_name}</h1>
       <p>{data.product_description}</p>
       <p class="text-2xl font-semibold text-blue-500">£{data.price}</p>
