@@ -1,26 +1,35 @@
-<script>
+<script lang="ts">
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
-    
-    let image = [];
+
+   interface Listing {
+        id?: string;
+        labels: string,
+        product_description: string;
+        product_name: string;
+        seller_ID: string;
+        price: number;
+    }
+
+    // let image = [];
 
     const getProducts = async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        const filteredData = data.filter((word) => word.labels == "album")
+        const filteredData = data.filter((word: Listing) => word.labels == "album")
 
-        getImagesForProducts(filteredData)
+        // getImagesForProducts(filteredData)
 
         return filteredData
     }
 
-    const getImagesForProducts = async (filteredData) => {
-        filteredData.forEach(async (element) => {
-            let res = await fetch(`http://localhost:5000/prod/image/${element.ID}`)
-            let data = await res.json()
-            image.push(data)
-        }) 
-    }
+    // const getImagesForProducts = async (filteredData: Listing) => {
+    //     filteredData.forEach(async (element) => {
+    //         let res = await fetch(`http://localhost:5000/prod/image/${element.ID}`)
+    //         let data = await res.json()
+    //         image.push(data)
+    //     }) 
+    // }
     
 
     getProducts()
