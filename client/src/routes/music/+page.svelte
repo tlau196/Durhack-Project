@@ -21,6 +21,7 @@
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
         products = data.filter((element: Listing) => element.labels[0] == "album")
+        console.log(products)
  
         const imagePromises = products.map(async (element) => {
             const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
