@@ -12,7 +12,7 @@
   let imageSelector: HTMLInputElement;
   let image: File;
 
-  let user: User;
+  let user: User | null;
 
   onMount(() => {
     authStore.subscribe((u) => (user = u));
@@ -25,7 +25,7 @@
   function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
 
-    createNewListing(name, description, price, user.uid, image).then(() =>
+    createNewListing(name, description, price, user!.uid, image).then(() =>
       goto("/user/dashboard")
     );
   }
@@ -73,7 +73,10 @@
     <!-- <label for="product_image">Product Image</label> -->
     <!-- <input type="file" id="product_image" name="product_image" /> -->
     <div class="flex justify-center items-center">
-        <button class="bg-secondary text-white hover:font-semibold p-4 w-48 " type="submit">Create Listing</button>
+      <button
+        class="bg-secondary text-white hover:font-semibold p-4 w-48"
+        type="submit">Create Listing</button
+      >
     </div>
   </form>
 </div>
