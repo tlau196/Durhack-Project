@@ -34,9 +34,9 @@
 <Navbar />
 
 <div class="p-8">
-  <h1 class="text-5xl font-semibold">New Listing</h1>
+  <h1 class="text-5xl py-4 font-semibold">New Listing</h1>
 
-  <form on:submit={handleSubmit} class="flex flex-col gap-3">
+  <form on:submit={handleSubmit} class="flex flex-col py-4 gap-3">
     <label for="product_name">Product Name</label>
     <input
       bind:value={name}
@@ -72,7 +72,8 @@
 
     <!-- <label for="product_image">Product Image</label> -->
     <!-- <input type="file" id="product_image" name="product_image" /> -->
-
-    <button type="submit">Create Listing</button>
+    <div class="flex justify-center items-center">
+        <button class="bg-secondary text-white hover:font-semibold p-4 w-48 " type="submit">Create Listing</button>
+    </div>
   </form>
 </div>
