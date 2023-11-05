@@ -54,7 +54,7 @@
     <div class="bg-white rounded-lg py-8 text-black">
       {#if productsAndImages}
         <h2 class="font-bold pl-6 my-4 text-3xl">Latest Music Albums</h2>
-        <div class="px-6 m-4 grid grid-cols-4 grid-rows-2 gap-4">
+        <div class="px-6 m-4 grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
           {#each productsAndImages as item}
             <ul>
               <li>
@@ -63,7 +63,7 @@
                     <p class="test-2x1 font-semibold">
                       {item.product.product_name}
                     </p>
-                    <img src={item.image} alt="yes" />
+                    <img class="rounded-md" src={item.image} alt="yes" />
                     <p>{item.product.product_description}</p>
                   </div>
                 </a>
