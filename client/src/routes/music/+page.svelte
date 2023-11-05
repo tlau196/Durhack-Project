@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
 
    interface Listing {
-        id?: string;
+        ID?: string;
         labels: string[],
         product_description: string;
         product_name: string;
@@ -15,7 +15,7 @@
     // let image = [];
     let products = null;
     let images: string[] = [];
-    let productsAndImages = []
+    let productsAndImages:object[] = []
 
     onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
@@ -23,7 +23,7 @@
         products = data.filter((element: Listing) => element.labels[0] == "album")
         console.log(products)
  
-        const imagePromises = products.map(async (element) => {
+        const imagePromises = products.map(async (element: Listing) => {
             const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
             const dataImages = await resImages.text();
             return dataImages;
