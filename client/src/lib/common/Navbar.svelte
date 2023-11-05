@@ -7,7 +7,9 @@
 
 <div class="flex items-center bg-primary text-white p-4 justify-between">
 
-    <img class="w-20 h-20" src="{logo}" alt="logo">
+    <li><a href="/">
+        <img class="w-20 h-20" src="{logo}" alt="logo">
+    </a></li>
 
     <Searchbar/>
     
