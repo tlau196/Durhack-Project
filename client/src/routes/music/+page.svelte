@@ -13,12 +13,13 @@
     }
 
     // let image = [];
-    let yes = null;
+    let products = null;
 
     onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        yes = data
+        products = data
+        console.log(products)
     })
 
 </script>
@@ -26,15 +27,17 @@
 <HeaderWork />
 <div class="px-12">
     
-    {#if yes}
+    {#if products}
         <h2 class="text-5xl font-bold p-12">Music</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
             <div class="grid grid-cols-3 gap-96">
                 <div>
-                    {#each yes as item}
-                        <p>{item.product_name}</p>
-                        <p>{item.product_description}</p>
+                    {#each products as item}
+                        <div>
+                            <p>{item.product_name}</p>
+                            <p>{item.product_description}</p>
+                        </div>
                     {/each}
                 </div>
             </div>
