@@ -9,10 +9,6 @@
         return data
     }
 
-    // const getImagesForProducts = async (data) => {
-    //     const res = await fetch(`http://localhost:5000/prod/image/${data.}`) 
-    // }
-
     getProducts()
 
 
