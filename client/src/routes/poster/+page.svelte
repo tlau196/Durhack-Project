@@ -2,14 +2,15 @@
     import Footer from "$lib/common/Footer.svelte";
     import HeaderWork from "$lib/common/HeaderWork.svelte"
     // import FilterBox from "$lib/common/HeaderWork.svelte"
-    const getProducts = async () => {
+    import { onMount } from "svelte";
+
+    let products = null;
+
+    onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        console.log(data)
-        return data
-    }
-
-    getProducts()
+        products = data.filter((element) => element.labels[0] == "poster")
+    })
 
 
 </script>
@@ -17,27 +18,26 @@
 <HeaderWork />
 <div class="px-12">
     
-    <h2 class="text-5xl font-bold p-12">Poster</h2>
-    <div class="flex items-center justify-center">
 
         <!-- <FilterBox />  -->
-        {#await getProducts()}
-            <p>Loading...</p>
-        {:then data}
-            <div class="grid grid-cols-3 gap-96">
-                {#each data as datas}
-                    {#if datas.labels == "poster"}
+    {#if products}
+        <h2 class="text-5xl font-bold p-12">Poster</h2>
+        <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center">
+                <!-- <FilterBox />  -->
+                <div class="px-12 grid grid-cols-3 gap-96">
+                    {#each products as item}
                         <div>
-                            <p>{datas.product_name}</p>
-                            <p>{datas.product_description}</p>
+                            <p>{item.product_name}</p>
+                            <p>{item.product_description}</p>
                         </div>
-                    {/if}
-                {/each}
+                    {/each}
+                </div>
             </div>
-        {:catch err}
-            <p>Something went wrong {err}</p>
-        {/await}
-    </div>
+        </div>
+    {:else}
+        <p>Loading...</p>
+    {/if}
 
 </div>
 <Footer />
