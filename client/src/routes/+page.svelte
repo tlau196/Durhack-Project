@@ -63,7 +63,7 @@
                     <p class="test-2x1 font-semibold">
                       {item.product.product_name}
                     </p>
-                    <img class="rounded-md" src={item.image} alt="yes" />
+                    <img class="rounded-lg transition duration-125 hover:scale-125" src={item.image} alt="yes" />
                     <p>{item.product.product_description}</p>
                   </div>
                 </a>
