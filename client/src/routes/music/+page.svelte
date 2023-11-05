@@ -14,28 +14,45 @@
 
     // let image = [];
     let products = null;
+    let images: string[] = [];
+    let productsAndImages = []
 
     onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        products = data.filter((element) => element.labels[0] == "album")
-        console.log(products)
+        products = data.filter((element: Listing) => element.labels[0] == "album")
+ 
+        const imagePromises = products.map(async (element) => {
+            const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
+            const dataImages = await resImages.text();
+            return dataImages;
+        });
+
+        images = await Promise.all(imagePromises);
+
+        productsAndImages = products.map((product: object, index: number) => ({ product, image: images[index] }));
+
+        
     })
+    
+
 
 </script>
 
 <HeaderWork />
 <div class="px-12">
     
-    {#if products}
+    {#if productsAndImages}
         <h2 class="text-5xl font-bold p-12">Music</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
             <div class="px-12 grid grid-cols-3 gap-96">
-                {#each products as item}
+                
+                {#each productsAndImages as item}
                     <div>
-                        <p>{item.product_name}</p>
-                        <p>{item.product_description}</p>
+                        <p>{item.product.product_name}</p>
+                        <img src="{item.image}" alt="yes">
+                        <p>{item.product.product_description}</p>
                     </div>
                 {/each}
             </div>
