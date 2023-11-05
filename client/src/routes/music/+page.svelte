@@ -5,7 +5,7 @@
 
    interface Listing {
         id?: string;
-        labels: string,
+        labels: string[],
         product_description: string;
         product_name: string;
         seller_ID: string;
@@ -47,7 +47,7 @@
         <h2 class="text-5xl font-bold p-12">Music</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
-            <div class="text-center px-12 py-4 grid grid-cols-3 gap-96">
+            <div class="text-center px-12 py-4 grid grid-cols-3 gap-20">
                 
                 {#each productsAndImages as item}
                     <ul>
