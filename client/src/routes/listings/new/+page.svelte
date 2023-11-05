@@ -40,6 +40,7 @@
   <form on:submit={handleSubmit} class="flex flex-col py-4 gap-3">
     <label for="product_name">Product Name</label>
     <input
+        style="border-radius:25px;"
       bind:value={name}
       type="text"
       id="product_name"
@@ -48,6 +49,7 @@
 
     <label for="product_description">Product Description</label>
     <textarea
+        style="border-radius:25px;"
       bind:value={description}
       id="product_description"
       name="product_description"
@@ -55,6 +57,7 @@
 
     <label for="product_price">Product Price</label>
     <input
+        style="border-radius:25px;"
       bind:value={price}
       type="number"
       min="1"
@@ -64,7 +67,7 @@
     />
 
     <label for="labels">Label</label>
-    <select bind:value={labels} id="labels" name="labels">
+    <select style="border-radius:25px;" bind:value={labels} id="labels" name="labels">
       <option value="album">Album</option>
       <option value="poster">Poster</option>
       <option value="merch">Merch</option>
