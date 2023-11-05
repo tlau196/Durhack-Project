@@ -82,3 +82,16 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
     });
     res.send(message);
 });
+
+// Content filters
+
+expressApp.get("/prod/filter/:filterTerm", async (req, res) => {
+    const listingRef = collection(db, "Listings");
+    const q = query(listingRef, where("labels", "==", req.params.searchTerm));
+    const querySnapshot = await getDocs(q);
+    let message = [];
+    querySnapshot.forEach((doc) => {
+        message.push({ID: doc.id, ...doc.data()});
+    });
+    res.send(message);
+});
