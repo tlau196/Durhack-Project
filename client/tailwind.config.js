@@ -9,7 +9,8 @@ export default {
             colors: {
                 'primary': '#66B6ED',
                 'secondary': '#6673ED',
-                'accent': 'e166ed'
+                'accent': 'e166ed',
+                'acceptable-gray':'#777',
             }
         },
     },

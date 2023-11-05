@@ -10,7 +10,7 @@
     }
 
     const search = async () => {
-        const response = await fetch(`http://localhost:5000/prod/search/${searchTerm}`)
+        const response = await fetch(`https://durhack-express.onrender.com/search/${searchTerm}`)
         console.log(response)
         const result = await response.json()
         console.log(result[0].ID)
