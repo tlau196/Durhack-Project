@@ -19,13 +19,13 @@
   let productsAndImages: any = [];
 
   onMount(async () => {
-    const res = await fetch("http://127.0.0.1:5000/prod/allprod");
+    const res = await fetch("https://durhack-express.onrender.com/prod/allprod");
     const products = await res.json();
     console.log(products);
 
     const imagePromises = products.map(async (element: Listing) => {
       const resImages = await fetch(
-        `http://127.0.0.1:5000/prod/image/${element.ID}`
+        `https://durhack-express.onrender.com/prod/image/${element.ID}`
       );
       const dataImages = await resImages.text();
       return dataImages;
@@ -39,7 +39,7 @@
     }));
   });
 
-  const root = "https//127.0.0.1:5000/";
+  const root = "https://durhack-express.onrender.com/";
 </script>
 
 <svelte:head>

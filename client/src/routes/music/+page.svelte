@@ -18,13 +18,13 @@
     let productsAndImages:object[] = []
 
     onMount( async () => {
-        const res = await fetch("http://localhost:5000/prod/allprod")
+        const res = await fetch("https://durhack-express.onrender.com/prod/allprod")
         const data = await res.json()
         products = data.filter((element: Listing) => element.labels[0] == "album")
         console.log(products)
  
         const imagePromises = products.map(async (element: Listing) => {
-            const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
+            const resImages = await fetch(`https://durhack-express.onrender.com/prod/image/${element.ID}`);
             const dataImages = await resImages.text();
             return dataImages;
         });
@@ -44,7 +44,7 @@
 <div class="px-12">
     
     {#if productsAndImages}
-        <h2 class="text-5xl font-bold p-12, text-center">Albums</h2>
+        <h2 class="text-center text-5xl font-bold p-12">Music</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
             <div class="text-center px-12 py-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-20">

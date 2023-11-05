@@ -18,13 +18,13 @@
     let productsAndImages:object[] = []
 
     onMount( async () => {
-        const res = await fetch("http://localhost:5000/prod/allprod")
+        const res = await fetch("https://durhack-express.onrender.com/prod/allprod")
         const data = await res.json()
         products = data.filter((element: Listing) => element.labels[0] == "merch")
         console.log(products)
 
         const imagePromises = products.map(async (element: Listing) => {
-            const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
+            const resImages = await fetch(`https://durhack-express.onrender.com/prod/image/${element.ID}`);
             const dataImages = await resImages.text();
             return dataImages;
         });
