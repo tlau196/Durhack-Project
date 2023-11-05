@@ -85,6 +85,7 @@ export async function createNewListing(name: string, description: string, price:
 }
 
 export interface Order {
+    id?: string;
     created_at: string;
     fulfilled: boolean;
     listing_ID: string;
@@ -108,5 +109,22 @@ export async function createOrder(listingID: string, uid: string) {
         await addDoc(collection(db, "Orders"), order);
     } catch(e) {
         console.error("Error making purchase:", e);
+    }
+}
+
+export async function getUsersOrders(uid: string) {
+    try {
+        const q = query(collection(db, "Orders"), where("user_ID", "==", uid));
+        const snapshot = await getDocs(q);
+        const orders: Order[] = [];
+        snapshot.forEach((doc) => {
+            const newOrder = doc.data() as Order;
+            newOrder.id = doc.id;
+            orders.push(newOrder);
+        });
+
+        return orders;
+    } catch(e) {
+        console.error("Error fetching user's orders:", e);
     }
 }
