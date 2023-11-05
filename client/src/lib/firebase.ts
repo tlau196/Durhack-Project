@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import { authStore } from "./stores";
 
@@ -17,6 +18,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
+export const storage = getStorage(firebaseApp);
 
 
 firebaseAuth.onAuthStateChanged(user => {
@@ -70,15 +72,19 @@ export async function getListing(id: string) {
     }
 }
 
-export async function createNewListing(name: string, description: string, price: number, uid: string) {
+export async function createNewListing(name: string, description: string, price: number, uid: string, image: File) {
     try {
-        await addDoc(collection(db, "Listings"), {
+        
+        const newListing = await addDoc(collection(db, "Listings"), {
             product_name: name,
             product_description: description,
             seller_ID: uid,
             labels: "",
             price: price
         });
+        // upload image
+        const imageRef = ref(storage, `Images/${newListing.id}.jpg`);
+        await uploadBytes(imageRef, image);
     } catch(e) {
         console.error("Error creating new listing:", e);
     }

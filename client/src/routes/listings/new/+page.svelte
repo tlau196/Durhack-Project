@@ -9,17 +9,23 @@
   let name: string;
   let description: string;
   let price: number;
+  let imageSelector: HTMLInputElement;
+  let image: File;
 
   let user: User;
 
   onMount(() => {
     authStore.subscribe((u) => (user = u));
+
+    imageSelector.addEventListener("change", (event: Event) => {
+      image = (event.target as HTMLInputElement).files![0];
+    });
   });
 
   function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
 
-    createNewListing(name, description, price, user.uid).then(() =>
+    createNewListing(name, description, price, user.uid, image).then(() =>
       goto("/user/dashboard")
     );
   }
@@ -54,6 +60,14 @@
       step="any"
       id="product_price"
       name="product_price"
+    />
+
+    <label for="product_image">Product Image</label>
+    <input
+      bind:this={imageSelector}
+      type="file"
+      id="product_image"
+      name="product_image"
     />
 
     <!-- <label for="product_image">Product Image</label> -->
