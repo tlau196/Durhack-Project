@@ -4,16 +4,27 @@
     // import FilterBox from "$lib/common/HeaderWork.svelte"
     import { onMount } from "svelte";
 
+   interface Listing {
+        ID?: string;
+        labels: string[],
+        product_description: string;
+        product_name: string;
+        seller_ID: string;
+        price: number;
+    }
+
+    // let image = [];
     let products = null;
     let images: string[] = [];
-    let productsAndImages = []
+    let productsAndImages:object[] = []
 
     onMount( async () => {
         const res = await fetch("http://localhost:5000/prod/allprod")
         const data = await res.json()
-        products = data.filter((element) => element.labels[0] == "poster")
+        products = data.filter((element: Listing) => element.labels[0] == "poster")
+        console.log(products)
  
-        const imagePromises = products.map(async (element) => {
+        const imagePromises = products.map(async (element: Listing) => {
             const resImages = await fetch(`http://localhost:5000/prod/image/${element.ID}`);
             const dataImages = await resImages.text();
             return dataImages;
