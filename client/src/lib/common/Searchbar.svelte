@@ -16,7 +16,7 @@
         console.log(result[0].ID)
 
         //listings/ID
-        goto(`listings/${result[0].ID}`)
+        goto(`/listings/${result[0].ID}`)
     }
 
 </script>
