@@ -5,7 +5,7 @@
 <div class="flex justify-center items-center">
     <div class="pt-8 flex-1 text-center font-semibold text-white bg-primary">
 
-        <div class="col-span-4 px-12 flex items-center justify-between flex-row gap-36">
+        <div class="px-12 flex items-center justify-between sm:flex-row flex-col gap-8">
             <div>
                 <ul class="my-4 flex items-center justify-between gap-4">
                     <li><a href="">United Kingdom</a></li>
