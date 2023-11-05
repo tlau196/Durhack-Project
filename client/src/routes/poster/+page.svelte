@@ -46,10 +46,10 @@
 
         <!-- <FilterBox />  -->
     {#if productsAndImages}
-        <h2 class="text-5xl font-bold p-12">Poster</h2>
+        <h2 class="text-5xl font-bold text-center p-12">Poster</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
-            <div class="px-12 grid grid-cols-3 gap-96 py-4">
+            <div class="px-12 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-96 py-4">
                 
                 {#each productsAndImages as item}
                     <ul>

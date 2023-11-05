@@ -2,7 +2,6 @@
   import Carousel from "$lib/common/Carousel.svelte";
   import Footer from "$lib/common/Footer.svelte";
   import HeaderWork from "$lib/common/HeaderWork.svelte";
-  import { onMount } from "svelte";
 
   interface Listing {
     ID?: string;

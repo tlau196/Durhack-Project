@@ -2,16 +2,14 @@
   import { Carousel } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { quintOut } from "svelte/easing";
+  import type { HTMLImgAttributes } from "svelte/elements";
   import { scale } from "svelte/transition";
 
-  const images: any = [];
+  let images: HTMLImgAttributes = [];
 
   onMount(async () => {
-    for (let i = 1; i < 9; i++) {
-      const res = await fetch(`http://localhost:5000/prod/banner/${i}`);
-      console.log(await res.text());
-      images.push({ src: await res.text(), alt: "", title: "" });
-    }
+    const res = await fetch(`http://localhost:5000/prod/banner/1`);
+    images.push({ src: await res.text(), alt: "", title: "" });
   });
 
   const scaleAnimation = (x: any) =>

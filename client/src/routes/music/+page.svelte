@@ -47,7 +47,7 @@
         <h2 class="text-5xl font-bold p-12">Albums</h2>
         <div class="flex items-center justify-center">
             <!-- <FilterBox />  -->
-            <div class="text-center px-12 py-4 grid grid-cols-3 gap-20">
+            <div class="text-center px-12 py-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-20">
                 
                 {#each productsAndImages as item}
                     <ul>

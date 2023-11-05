@@ -4,10 +4,14 @@
   import { basketStore } from "$lib/stores";
   import type { Listing } from "$lib/firebase";
   import BasketItem from "./BasketItem.svelte";
+  import { onMount } from "svelte";
 
-  let basketContents: Listing[];
-  basketStore.subscribe((basket) => {
-    basketContents = basket;
+  let basketContents: Listing[] = [];
+
+  onMount(() => {
+    basketStore.subscribe((basket) => {
+      basketContents = basket;
+    });
   });
 
   $: subtotal = basketContents.reduce((acc, item) => {
