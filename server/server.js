@@ -89,11 +89,23 @@ expressApp.get("/prod/search/:searchTerm", async (req, res) => {
 
 expressApp.get("/prod/filter/:filterTerm", async (req, res) => {
     const listingRef = collection(db, "Listings");
-    const q = query(listingRef, where("labels", "==", req.params.searchTerm));
+    const q = query(listingRef, where("labels", "array-contains", req.params.filterTerm));
     const querySnapshot = await getDocs(q);
     let message = [];
     querySnapshot.forEach((doc) => {
         message.push({ID: doc.id, ...doc.data()});
     });
     res.send(message);
+});
+
+expressApp.get("/prod/filters/:filterTerms", async (req, res) => {
+    const terms = req.params.filterTerms.split(" ");
+    const q = query(listingRef, where("lables", "array-contains-any", terms));
+    const querySnapshot = await getDocs(q);
+    let message = [];
+    querySnapshot.forEach((doc) => {
+        message.push({ID: doc.id, ...doc.data()});
+    });
+    res.send(message);
+});
 });

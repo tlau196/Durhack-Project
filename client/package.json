@@ -28,6 +28,8 @@
 	"type": "module",
 	"dependencies": {
 		"@paypal/paypal-js": "^7.0.3",
+		"esbuild": "^0.19.5",
+		"esbuild-darwin-arm64": "^0.15.18",
 		"firebase": "^10.5.2"
 	}
 }
