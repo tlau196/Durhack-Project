@@ -14,17 +14,19 @@
 </script>
 
 <div
-  class="w-full my-8 py-8 px-20 flex border-4 border-black items-center justify-between gap-8"
+  class="w-full my-8 py-8 px-20 flex border border-gray-400 items-center justify-between gap-8"
 >
-  <div class="flex-1 flex items-start text-black font-bold justify-between flex-col">
+  <div
+    class="flex-1 flex items-start text-black font-bold justify-between flex-col"
+  >
     <h2 class="text-3xl">Name: {listing.product_name}</h2>
     <h2 class="text-3xl">Price: £{listing.price}</h2>
     <div class="w-full py-4 pt-6">
-        <Button
-            backgroundColour={ButtonBackgroundColour.Red}
-            darkText={false}
-            onClick={handleRemoveFromBasket}>Remove from basket</Button
-        >
+      <Button
+        backgroundColour={ButtonBackgroundColour.Red}
+        darkText={false}
+        onClick={handleRemoveFromBasket}>Remove from basket</Button
+      >
     </div>
   </div>
 </div>
