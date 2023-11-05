@@ -1,12 +1,17 @@
 <script lang="ts">
   import Button, { ButtonBackgroundColour } from "$lib/common/Button.svelte";
   import Navbar from "$lib/common/Navbar.svelte";
+  import { basketStore } from "$lib/stores.js";
 
   export let data;
 
-  $: listing = data.listing;
+  $: listing = data.listing!;
 
-  function handleClickPurchase() {}
+  function handleClickAddToBasket() {
+    basketStore.update((basket) => {
+      return [...basket, listing];
+    });
+  }
 </script>
 
 <Navbar />
@@ -18,7 +23,11 @@
     <p class="text-2xl font-semibold text-blue-500">£{listing.price}</p>
 
     <div class="flex flex-row gap-3">
-      <div id="paypal-button-container" />
+      <Button
+        onClick={handleClickAddToBasket}
+        darkText={false}
+        backgroundColour={ButtonBackgroundColour.Green}>Add to basket</Button
+      >
     </div>
   </div>
 {:else}

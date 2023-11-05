@@ -12,6 +12,7 @@
 
       paypal!.Buttons!({
         createOrder: function (data: any, actions: any) {
+          console.log(data);
           return actions.order.create({
             purchase_units: [
               {
