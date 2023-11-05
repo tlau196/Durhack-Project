@@ -14,6 +14,7 @@
   import { onMount } from "svelte";
   import Listing from "./Listing.svelte";
   import Order from "./Order.svelte";
+  import stonk from "$lib/images/stonks.jpg";
 
   let user: User;
 
@@ -87,6 +88,8 @@
     class="bg-neutral-200 p-8 transition duration-200 hover:bg-neutral-300 col-span-2 rounded-md"
   >
     <h2 class="text-3xl">Stonks</h2>
+
+    <img src={stonk} alt="stonk" />
   </div>
   <div
     class="bg-neutral-200 flex flex-col gap-5 p-8 transition duration-200 hover:bg-neutral-300 col-span-1 rounded-md"

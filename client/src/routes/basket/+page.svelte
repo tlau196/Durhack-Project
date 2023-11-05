@@ -1,63 +1,40 @@
-<script>
-    import Footer from "$lib/common/Footer.svelte";
-    import HeaderWork from "$lib/common/HeaderWork.svelte"
-    
-    
-    let itemCost = () => {
-        
-    }
+<script lang="ts">
+  import Footer from "$lib/common/Footer.svelte";
+  import HeaderWork from "$lib/common/HeaderWork.svelte";
+  import { basketStore } from "$lib/stores";
+  import type { Listing } from "$lib/firebase";
 
-    let Tax = () => {
-        
-    }
+  let basketContents: Listing[];
+  basketStore.subscribe((basket) => {
+    basketContents = basket;
+  });
 
-    let TotalCost = () => {
-        
-    }
-
+  $: subtotal = basketContents.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+  $: tax = subtotal * 0.2;
+  $: total = subtotal + tax;
 </script>
 
-
 <HeaderWork />
-<div class="px-12">
+<div class="px-12 flex flex-col gap-6 items-center">
+  <h1 class="text-5xl font-bold pt-8">Basket</h1>
 
-    <h1 class="text-5xl font-bold pt-8">Basket</h1>
-
-    <!-- Dummy Data -->
-    <div class="my-8 py-8 px-20 bg-blue-600 flex items-center justify-between gap-8">
-        <img src="#" alt="hello">
-        <div class="flex-1 flex items-start justify-between flex-col">
-            <h2 class="text-3xl">Name: </h2>
-            <h2 class="text-3xl">Price: </h2>
-        </div>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-row justify-between">
+      <p class="text-2xl font-semibold">Subtotal</p>
+      <p class="text-2xl font-semibold">£{subtotal.toFixed(2)}</p>
     </div>
-
-    <div class="my-8 py-8 px-20 bg-blue-600 flex items-center justify-between gap-8">
-        <img src="#" alt="hello">
-        <div class="flex-1 flex items-start justify-between flex-col">
-            <h2 class="text-3xl">Name: </h2>
-            <h2 class="text-3xl">Price: </h2>
-        </div>
+    <div class="flex flex-row justify-between">
+      <p class="text-2xl font-semibold">Tax</p>
+      <p class="text-2xl font-semibold">£{tax.toFixed(2)}</p>
     </div>
-
-    <div class="my-8 py-8 px-20 bg-blue-600 flex items-center justify-between gap-8">
-        <img src="#" alt="hello">
-        <div class="flex-1 flex items-start justify-between flex-col">
-            <h2 class="text-3xl">Name: </h2>
-            <h2 class="text-3xl">Price: </h2>
-        </div>
+    <div class="flex flex-row justify-between">
+      <p class="text-2xl font-semibold">Total</p>
+      <p class="text-2xl font-semibold">£{total.toFixed(2)}</p>
     </div>
+  </div>
 
-    <div class="my-8 bg-blue-600 p-5">
-        <h2 class="text-5xl">Total</h2>
-        <div class="p-5">
-            <h2 class="text-xl">Item Cost: </h2>
-            <h2 class="text-xl">Tax: </h2>
-            <h2 class="text-xl">Total Cost: </h2>
-            <h2 class="text-xl">Paypal</h2>
-        </div>
-    </div>
-    <!-- {#each products as product} -->
-    <!-- {/each} -->
+  <div id="paypal-button-container" class="w-1/2" />
 </div>
 <Footer />
