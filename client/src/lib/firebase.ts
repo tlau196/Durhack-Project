@@ -72,14 +72,14 @@ export async function getListing(id: string) {
     }
 }
 
-export async function createNewListing(name: string, description: string, price: number, uid: string, image: File) {
+export async function createNewListing(name: string, description: string, price: number, uid: string, image: File, labels: string) {
     try {
         
         const newListing = await addDoc(collection(db, "Listings"), {
             product_name: name,
             product_description: description,
             seller_ID: uid,
-            labels: "",
+            labels: [labels],
             price: price
         });
         // upload image

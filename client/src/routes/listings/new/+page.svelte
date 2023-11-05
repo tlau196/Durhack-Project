@@ -11,6 +11,7 @@
   let price: number;
   let imageSelector: HTMLInputElement;
   let image: File;
+  let labels: string;
 
   let user: User | null;
 
@@ -25,8 +26,8 @@
   function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
 
-    createNewListing(name, description, price, user!.uid, image).then(() =>
-      goto("/user/dashboard")
+    createNewListing(name, description, price, user!.uid, image, labels).then(
+      () => goto("/user/dashboard")
     );
   }
 </script>
@@ -61,6 +62,13 @@
       id="product_price"
       name="product_price"
     />
+
+    <label for="labels">Label</label>
+    <select bind:value={labels} id="labels" name="labels">
+      <option value="album">Album</option>
+      <option value="poster">Poster</option>
+      <option value="merch">Merch</option>
+    </select>
 
     <label for="product_image">Product Image</label>
     <input
