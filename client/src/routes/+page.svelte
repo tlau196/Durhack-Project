@@ -19,7 +19,7 @@
   let productsAndImages: any = [];
 
   onMount(async () => {
-    const res = await fetch("https://durhack-express.onrender.com/prod/allprod");
+    const res = await fetch("https://durhack-express.onrender.com/prod/filter/album");
     const products = await res.json();
     console.log(products);
 
